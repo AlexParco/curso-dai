@@ -64,5 +64,3 @@ $('theme').addEventListener('click', () => {
   }
 })
 
-
-
