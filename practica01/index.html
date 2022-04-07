@@ -7,29 +7,34 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <button type="button" class="theme" id="theme">light</button>
     <div class="container">
-      <form id="form">
-
-        <p>carril sur</p>
-        <input type="number" id="sur"/>
-
-        <p>carril norte</p>
-        <input type="number" id="norte"/>
-
-        <p>carril este</p>
-        <input type="number" id="este" />
-
-        <p>carril oeste</p>
-        <input type="number" id="oeste"/>
-        <br>
-        <br>
-        <button type="submit">enviar</button>
-      </form>
+      <div class="cont-resp" id="resp">
+      </div>
       <div class="semaforo" id="semaforo">
         <div class="circle" color="red"></div>
         <div class="circle" color="green"></div>
         <div class="circle" color="yellow"></div>
       </div>
+      <form id="form" class="form">
+        <div>
+          <p>Carril sur</p>
+          <input type="number" id="sur"/>
+
+          <p>Carril norte</p>
+          <input type="number" id="norte"/>
+        </div>
+        <div>
+          <p>Carril este</p>
+          <input type="number" id="este" />
+
+          <p>Carril oeste</p>
+          <input type="number" id="oeste"/>
+        </div>
+        <div class="cont-btn">
+          <button type="submit">enviar</button>
+        </div>
+      </form>
     </div>
     <script src="./index.js"></script>
 </body>

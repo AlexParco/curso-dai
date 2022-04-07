@@ -10,7 +10,7 @@ const SemaforoAnimation = async () => {
   for (let i=0; i < colores.length; i++){
     semaforo.children[i].classList.add(colores[i]) 
 
-    await sleep(600)
+    await sleep(800)
 
     semaforo.children[i].classList.remove(colores[i])
   }
@@ -22,7 +22,9 @@ SemaforoAnimation()
 const $ = (n) => document.getElementById(n)
 
 
-$('form').addEventListener('submit', () => {
+$('form').addEventListener('submit', (e) => {
+  e.preventDefault()
+  
   let norte = $('sur').value;
   let sur = $('norte').value;
 
@@ -34,16 +36,33 @@ $('form').addEventListener('submit', () => {
 
 
   if(y >= x) {
-    alert("primero se ponen en verde los semáforos de los carriles norte y sur con un tiempo de: " +
-    y + " segundos" + "\nluego se ponen en verde los semáforos de los carriles este y oeste con un tiempor de: " +
-    x + " segundos")  
-
+    $('resp').innerHTML += `
+    <p>
+   primero se ponen en verde los semáforos de los carriles norte y sur con un tiempo de: <strong>${y}</strong> segundos luego se ponen en verde los semáforos de los carriles este y oeste con un tiempo de: <strong>${x}</strong> segundos
+    </p>
+    `
   } else{
-    alert("Primero se ponen en verde los semáforos de los carriles este y oeste con un tiempo de: " +
-    x + " segundos" + "\nLuego se ponen en verde los semáforos de los carriles norte y sur con un tiempor de: " +
-    y + " segundos")
+    $('resp').innerHTML += `
+    <p>
+   primero se ponen en verde los semáforos de los carriles norte y sur con un tiempo de: <strong>${x}</strong> segundos luego se ponen en verde los semáforos de los carriles este y oeste con un tiempo de: <strong>${y}</strong> segundos
+    </p>
+    `
   }
 }) 
+
+//  change theme
+
+$('theme').addEventListener('click', () => {
+  if (document.body.style.getPropertyValue('--bg-color') === '#101010'){
+    $('theme').innerHTML = 'light'
+    document.body.style.setProperty('--bg-color', '#f9f9f9');
+    document.body.style.setProperty('--text-color', '#101010');
+  }else {
+    $('theme').innerHTML = 'dark'
+    document.body.style.setProperty('--bg-color', '#101010');
+    document.body.style.setProperty('--text-color', '#f9f9f9');
+  }
+})
 
 
 
