@@ -1,6 +1,14 @@
 <?php 
 include_once'./controllers/users.php';
+// si no est un admin se le regresara a la pagina principal
+session_start();
+
+if (!isset($_SESSION['admin'])){
+    header('Location: /');
+    exit();
+}
 ?>
+
 <html>
 <head>
     <link rel="stylesheet" href="./styles/style.css">
@@ -79,7 +87,7 @@ include_once'./controllers/users.php';
                             <a href="/" type="submit" name="cancelar" >cancelar</a>
                         <?php } else { ?>
                             <a href="?save" >Agregar usuario</a>
-                            <a href="/" >Salir</a>
+                            <a href="/logout.php" >Cerrar Sesion</a>
                         <?php } ?>
                     <?php } ?>
                 </td>

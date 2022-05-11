@@ -10,8 +10,9 @@ if(isset($_POST['register'])){
     $SQL = $conn->query("INSERT INTO users(type, email, password) VALUES ('$type','$email', '$hashPass')");
 
     if(!$SQL){
-        echo $conn->error;   
-        heading('Location: /');
+        header('Location: /');
+    }else{
+        header('Location: /');
     }
 }
 
@@ -28,11 +29,12 @@ if(isset($_POST['login'])) {
                 $conn_pass = $row["password"];
                 $verify_pass = password_verify($password, $conn_pass);
                 if($verify_pass){
-     //               $_SESSION['email'] = $email;
-                    $_SESSION['auth'] = '1';
+                    $_SESSION['email'] = $email;
                     if ($row['type'] == 'admin'){
+                        $_SESSION['admin'] = '1';
                         header('Location: /adminpage.php');
                     }else{
+                        $_SESSION['user'] = '1';
                         header('Location: /relaciones.php');
                     }
                     exit;
