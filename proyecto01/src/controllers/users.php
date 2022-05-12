@@ -10,22 +10,21 @@ if(isset($_POST['save'])){
 
     if(!$SQL){
         echo $conn->error;   
-        heading('Location: /');
+        header('Location: /logout.php');
+    }else{
+        header('Location: /adminpage');
     }
 }
 
-// <url ?del>
 if(isset($_GET['del'])){
     $SQL = $conn->query("DELETE FROM users WHERE id=".$_GET['del']);
 }
 
-// <url ?edit>
 if(isset($_GET['edit'])){
     $SQL = $conn->query("SELECT * FROM users WHERE id=".$_GET['edit']);
     $getROW = $SQL->fetch_array();
 }
 
-// <button name = update> 
 if(isset($_POST['update'])){
     $SQL = $conn->query("UPDATE users SET type='".$_POST['type']."', email='".$_POST['email']."' WHERE id=".$_GET['edit']);
 }

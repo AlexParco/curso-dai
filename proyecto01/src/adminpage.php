@@ -1,6 +1,7 @@
 <?php 
 include_once'./controllers/users.php';
-// si no est un admin se le regresara a la pagina principal
+
+// si no es un admin se le regresara a la pagina principal
 session_start();
 
 if (!isset($_SESSION['admin'])){
@@ -12,15 +13,16 @@ if (!isset($_SESSION['admin'])){
 <html>
 <head>
     <link rel="stylesheet" href="./styles/style.css">
-    <!-- CSS only
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-     -->
 </head>
 <body>
 <div class="container">
     <div class="table-responsive">
-        <table class="table" style="width: 700px;">
-            <thead class="table-dark">
+        <h1 class="fs-2">Lista de usuarios</h1>
+        <table class="table" style="width: 600px;">
+            <thead class="table">
                 <tr>
                     <th scope='col'>#</th>
                     <th scope='col'>Type</th>
@@ -48,11 +50,11 @@ if (!isset($_SESSION['admin'])){
         </table>
     <div>
     <form method="post">
-        <table width="%70" cellpadding="15" class="table_form">
+        <table width="100%" cellpadding="15" class="table_form">
             <?php if(isset($_GET['save']) || isset($_GET['edit'])) { ?>
             <tr>
                 <td>
-                <input type="text" name="type" placeholder="Type" value="<?php 
+                <input class="form-control" type="text" name="type" placeholder="Type" value="<?php 
                 if(isset($_GET['edit'])){
                     echo $getROW['type'];
                 }
@@ -61,7 +63,7 @@ if (!isset($_SESSION['admin'])){
             </tr>
             <tr>
                 <td>
-                <input type="text" name="email" placeholder="Email" value="<?php 
+                <input class="form-control"  type="text" name="email" placeholder="Email" value="<?php 
                 if(isset($_GET['edit'])){
                     echo $getROW['email'];
                 }
@@ -71,7 +73,7 @@ if (!isset($_SESSION['admin'])){
         <?php if(isset($_GET['save'])){ ?>
             <tr>
                 <td>
-                    <input type="password" name="password" placeholder="password"/> 
+                    <input class="form-control" type="password" name="password" placeholder="password"/> 
                 </td>
             </tr>
         <?php }  ?>
@@ -79,15 +81,15 @@ if (!isset($_SESSION['admin'])){
             <tr>
                 <td>
                     <?php if (isset($_GET['edit'])){ ?>
-                        <button type="submit" name="update">Editar</button>
+                        <button type="submit" name="update class="btn btn-primary"">Editar</button>
                         <a href="/">Inicio</a>
                      <?php } else { ?>
                         <?php if(isset($_GET['save'])){?>
-                            <button type="submit" name="save" >Save</button>
-                            <a href="/" type="submit" name="cancelar" >cancelar</a>
+                            <button type="submit" name="save" class="btn btn-primary" >Guardar</button>
+                            <a href="/adminpage.php" type="submit" name="cancelar" class="btn btn-primary" >cancelar</a>
                         <?php } else { ?>
-                            <a href="?save" >Agregar usuario</a>
-                            <a href="/logout.php" >Cerrar Sesion</a>
+                            <a href="?save" class="btn btn-primary">Agregar usuario</a>
+                            <a href="/logout.php" class="btn btn-primary" >Cerrar Sesion</a>
                         <?php } ?>
                     <?php } ?>
                 </td>
